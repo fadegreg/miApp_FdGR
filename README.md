@@ -14,3 +14,7 @@ Aplicación PHP desplegada en contenedores usando Docker Compose.
    git clone https://github.com/fadegreg/miApp_FdGR
    cd miApp_FdGR
    docker-compose up -d
+
+2. Para acceder a la página es necesario acceder a la URL siguiente:
+
+http://localhost:8080/listado.php
