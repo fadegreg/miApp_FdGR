@@ -16,5 +16,5 @@ Aplicación PHP desplegada en contenedores usando Docker Compose.
    docker-compose up -d
 
 2. Para acceder a la página es necesario acceder a la URL siguiente:
-
+   ```bash
 http://localhost:8080/listado.php
