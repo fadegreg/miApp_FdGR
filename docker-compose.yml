@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_DB: miapp
       POSTGRES_USER: root 
-      POSTGRES_PASSWORD: root
+      POSTGRES_PASSWORD: abc123.
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
