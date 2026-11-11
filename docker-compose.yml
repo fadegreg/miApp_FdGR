@@ -1,37 +1,25 @@
-services:
-  db:
-    image: mysql:8.0
-    container_name: dwes03
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dwes
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - backend
+version: '3.8'
 
-  web:
-    build: .
-    container_name: dwes03-web
+services:
+  nginx:
+    image: nginx:latest
     ports:
       - "8080:80"
     volumes:
-      - ./html:/var/www/html
-    environment:
-      DB_HOST: db
-      DB_NAME: dwes
-      DB_USER: root
-      DB_PASS: root
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - db
-    networks:
-      - backend
+      - php
 
-networks:
-  backend:
+  php:
+    build: .
+    volumes:
+      - ./src:/var/www/html
 
-volumes:
-  db_data:
+  db:
+    image: mysql:8.1
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: miapp
+    volumes:
+      - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
