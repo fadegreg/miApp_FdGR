@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 version: '3.8'
 
 services:
+=======
+
+services:
+
+>>>>>>> 1828790e637659df352bd1ceda1394e43f07e3a5
   nginx:
     image: nginx:latest
     ports:
@@ -8,6 +14,7 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+<<<<<<< HEAD
     depends_on:
       - php
 
@@ -23,3 +30,27 @@ services:
       MYSQL_DATABASE: miapp
     volumes:
       - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
+=======
+    depends_on:
+      - php
+
+  php:
+    build: .
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: miapp
+      POSTGRES_USER: root 
+      POSTGRES_PASSWORD: abc123.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:
+>>>>>>> 1828790e637659df352bd1ceda1394e43f07e3a5
